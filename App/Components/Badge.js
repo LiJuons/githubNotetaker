@@ -27,7 +27,7 @@ Badge.PropTypes = {
   userInfo: React.PropTypes.object.isRequired
 };
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         backgroundColor: '#48BBEC',
         paddingBottom: 10

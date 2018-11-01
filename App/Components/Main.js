@@ -83,7 +83,7 @@ class Main extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         padding: 30,

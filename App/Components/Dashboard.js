@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
+import Profile from './Profile';
+import Repositories from './Repositories';
+import Notes from './Notes';
+import api from '../Utils/api';
 
 class Dashboard extends Component {
 
@@ -23,15 +27,40 @@ class Dashboard extends Component {
   }
 
   goToProfile = () => {
-    console.log("Going to profile");
+    this.props.navigator.push({
+      component: Profile,
+      title: 'Profile Page',
+      passProps: {userInfo: this.props.userInfo}
+    })
   }
 
   goToRepos = () => {
-    console.log("Going to repos");
+    api.getRepos(this.props.userInfo.login)
+      .then((res) => {
+        this.props.navigator.push({
+          component: Repositories,
+          title: 'Repositories',
+          passProps: {
+            userInfo: this.props.userInfo,
+            repos: res
+          }
+        });
+      });
   }
 
   goToNotes = () => {
-    console.log("Going to notes");
+    api.getNotes(this.props.userInfo.login)
+      .then((res) => {
+        res = res || {};
+        this.props.navigator.push({
+          component: Notes,
+          title: 'Notes',
+          passProps: {
+            userInfo: this.props.userInfo,
+            notes: res
+          }
+        });
+      });
   }
 
   render() {
@@ -69,7 +98,7 @@ class Dashboard extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     marginTop: 65,
     flex: 1
