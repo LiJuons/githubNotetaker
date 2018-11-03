@@ -30,6 +30,7 @@ class Notes extends Component {
   handleSubmit = () => {
     const { note } = this.state;
     this.setState({ note: '' });
+    
 
     api.addNote(this.props.userInfo.login, note)
       .then((data) => {
@@ -85,9 +86,9 @@ class Notes extends Component {
   }
 };
 
-Notes.PropTypes = {
-  userInfo: React.PropTypes.object.isRequired
-}
+// Notes.PropTypes = {
+//   userInfo: React.PropTypes.object.isRequired
+// }
 
 const styles = StyleSheet.create({
   container: {

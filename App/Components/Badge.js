@@ -23,9 +23,9 @@ class Badge extends Component {
   }
 };
 
-Badge.PropTypes = {
-  userInfo: React.PropTypes.object.isRequired
-};
+// Badge.PropTypes = {
+//   userInfo: React.PropTypes.object.isRequired
+// };
 
 const styles = StyleSheet.create({
     container: {

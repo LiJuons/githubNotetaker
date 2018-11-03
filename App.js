@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, NavigatorIOS} from 'react-native';
-
+import Main from './App/Components/Main';
 
 type Props = {};
 export default class App extends Component<Props> {

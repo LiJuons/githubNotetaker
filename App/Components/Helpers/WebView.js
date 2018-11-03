@@ -16,9 +16,9 @@ class Web extends Component {
   }
 };
 
-Web.PropTypes = {
-  url: React.PropTypes.string.isRequired
-}
+// Web.PropTypes = {
+//   url: React.PropTypes.string.isRequired
+// }
 
 const styles = StyleSheet.create({
     container: {

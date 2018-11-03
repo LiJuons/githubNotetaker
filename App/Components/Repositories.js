@@ -46,10 +46,10 @@ class Repositories extends Component {
 }
 
 
-Badge.PropTypes = {
-  userInfo: React.PropTypes.object.isRequired,
-  repos: React.PropTypes.array.isRequired
-};
+// Badge.PropTypes = {
+//   userInfo: React.PropTypes.object.isRequired,
+//   repos: React.PropTypes.array.isRequired
+// };
 
 const styles = StyleSheet.create({
     container: {

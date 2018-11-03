@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, TextInput, TouchableHighlight, ActivityIndicatorIOS} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableHighlight, ActivityIndicator} from 'react-native';
 import api from '../Utils/api';
+import Dashboard from './Dashboard';
 
 class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
-      username: '',
+      username: 'LiJuons',
       isLoading: false,
       error: false
     }
@@ -67,11 +68,7 @@ class Main extends Component {
           <Text style={styles.buttonText}>SEARCH</Text>
         </TouchableHighlight>
 
-        <ActivityIndicatorIOS
-          animating={this.state.isLoading}
-          color="#111"
-          size="large"
-        />
+        <ActivityIndicator animating={this.state.isLoading} size="large" color="#111" />
 
         {
           this.state.error &&

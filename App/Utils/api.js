@@ -1,4 +1,4 @@
-export default const api = {
+const api = {
 
   getBio(username){
     username = username.toLowerCase().trim();
@@ -18,7 +18,7 @@ export default const api = {
     return fetch(url).then((res) => res.json());
   },
 
-  addNote(username){
+  addNote(username, note){
     username = username.toLowerCase().trim();
     const url = `https://github-saver-x.firebaseio.com/${username}.json`;
     return fetch(url, {
@@ -28,3 +28,5 @@ export default const api = {
   }
 
 };
+
+export default api;
