@@ -4,7 +4,7 @@ import {
   View,
   Text,
   StyleSheet,
-  ListView,
+  FlatList,
   TextInput,
   TouchableHighlight
 } from 'react-native';
@@ -15,12 +15,19 @@ import Badge from './Badge';
 class Notes extends Component {
   constructor(props) {
     super(props);
-    this.ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
+
     this.state = {
-      dataSource: this.ds.cloneWithRows(this.props.notes),
+      notesList: this.handleFirebaseItem(this.props.notes),
       note: '',
       error: ''
     }
+  }
+
+  handleFirebaseItem = (notes) => {
+    const notesArr = Object.keys(notes).map((key,index) => (
+        notes[key]
+    ));
+    return notesArr;
   }
 
   handleChange = (e) => {
@@ -37,7 +44,7 @@ class Notes extends Component {
         api.getNotes(this.props.userInfo.login)
           .then((data) => {
             this.setState({
-              dataSource: this.ds.cloneWithRows(data)
+              notesList: this.handleFirebaseItem(data)
             });
           });
       }).catch((err) => {
@@ -63,22 +70,22 @@ class Notes extends Component {
     </View>
   )
 
-  renderRow = (rowData) => (
-    <View>
-      <View style={styles.rowContainer}>
-        <Text>{rowData}</Text>
-      </View>
-      <Separator />
-    </View>
-  )
-
   render() {
     return (
       <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-          renderHeader={() => <Badge userInfo={this.props.userInfo} /> }
+        <FlatList
+          keyboardDismissMode="on-drag"
+          ListHeaderComponent={() => <Badge userInfo={this.props.userInfo} /> }
+          data={this.state.notesList}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => (
+            <View key={item.key}>
+              <View style={styles.rowContainer}>
+                <Text>{item}</Text>
+              </View>
+              <Separator />
+            </View>
+          )}
         />
         {this.footer()}
       </View>
